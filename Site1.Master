@@ -1,0 +1,94 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="ProtoType.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <link id="Link1" href="Assets/css/Utilities.min.css" rel="stylesheet" type="text/css" media="screen" runat="server" />    
+    <link href="Content/bootstrap-switch/bootstrap3/bootstrap-switch.min.css" rel="stylesheet" /> 
+    
+    <script src="/Assets/jqueryui/jquery-1.9.1.js"></script>
+    <script src="/Assets/jqueryui/jquery-ui.js"></script> 
+     
+    
+    <script src="/Assets/scripts/bootstrap.min.js"></script>
+    <script src="/Assets/scripts/bootstrap-switch.min.js"></script>
+    
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+     <script >
+        $(document).ready(function () {
+
+            $('.dropdown-menu').on('mouseenter mouseleave click tap', function () {
+                $(this).toggleClass("open");
+            });
+        });
+     </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <div id="Menu" runat="server" class="navbar navbar-inverse">
+            <div class="navbar-header" id="menubar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button>
+                <a style="text-align: center" class="navbar-brand" runat="server" href="#">
+                    <asp:Label ID="Label2" runat="server" CssClass="label bg-amber" Text="USER:"></asp:Label>
+                </a>
+                <a style="text-align: center" class="navbar-brand" runat="server">
+                    <asp:Label ID="lblUser" runat="server" CssClass="label label-success"></asp:Label>
+                </a>
+                <a style="text-align:end" class="navbar-brand" runat="server" id="logoutlink" onserverclick="logoutlink_ServerClick">
+                    <asp:Label ID="Label1" runat="server" CssClass="label bg-amber" Text="LOGOUT"></asp:Label>
+                </a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <asp:Menu ID="NavigationMenu" Orientation="Horizontal" RenderingMode="List" IncludeStyleBlock="false" runat="server" EnableViewState="false">
+                    <DynamicMenuStyle CssClass="dropdown-menu" />
+                    <StaticMenuItemStyle CssClass="nav navbar-brand" ItemSpacing="20" />
+                    <StaticMenuStyle CssClass="nav navbar-nav" />
+                    <Items>
+                        <asp:MenuItem Text="SUPERVISOR">
+                            <asp:MenuItem Value="MANAGE" Text="MANAGE">
+                                <asp:MenuItem Text="EMPLOYEE" NavigateUrL="~/DETAILS.aspx" Value="MANAGE"></asp:MenuItem>
+                                <asp:MenuItem Text="CAUSE" Value="MANAGE" NavigateUrl="~/CauseDetails.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="MAINTENANCE" Value="MANAGE" NavigateUrl="~/MaintenanceDetail.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="DEPARTMENT" Value="MANAGE" NavigateUrl="~/DepartmentDetail.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="EQUIPMENT" Value="MANAGE" NavigateUrl="~/EquipmentDetail.aspx"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="HEAD" Value="HEAD">
+                                <asp:MenuItem Text="DATA ENTRY" Value="HEAD" NavigateUrl="~/DataDisplay.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="RECORDS" Value="HEAD" NavigateUrl="~/AllRecords.aspx"></asp:MenuItem>
+                            </asp:MenuItem>    
+                            <asp:MenuItem Text="REPORT" Value="REPORT">
+                                <asp:MenuItem Text="QUATERLY" Value="REPORT" NavigateUrl="~/StandardReport.aspx" ></asp:MenuItem>
+                                <asp:MenuItem Text="HALF YEARLY" Value="REPORT" NavigateUrl="~/StdReportHalfYear.aspx"></asp:MenuItem>
+                                <asp:MenuItem Text="ANNUALY" Value="REPORT" NavigateUrl="~/StdReportAnnual.aspx"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem Text="DRAFT" Value="DRAFT" NavigateUrl="~/UserEntryPage.aspx">
+                            </asp:MenuItem>
+                            
+                        </asp:MenuItem>
+                    </Items>
+                </asp:Menu>
+                <a align="right" style="text-align: center" class="navbar-brand" runat="server" href="Profile.aspx">
+                    <asp:Label ID="Label3" runat="server" CssClass="label bg-amber" Text="PROFILE:"></asp:Label>
+                </a>
+            </div>
+            
+        </div>
+        <div style="position: relative; top: auto; width: 100%" >
+            <asp:ContentPlaceHolder ID="cplMain" runat="server"></asp:ContentPlaceHolder>
+        </div>
+        <div>
+            <asp:Label runat="server" CssClass="alert alert-danger" Visible="False" ID="lblError"></asp:Label></div>
+    </form>
+    
+    <script src="/Assets/Scripts/wow.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/Assets/Scripts/custom.js"></script>
+</body>
+</html>
